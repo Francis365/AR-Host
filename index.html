@@ -32,8 +32,7 @@
     </a-scene>
 
     <script>
-        // Wait for the a-scene to load before initializing
-        document.querySelector('a-scene').addEventListener('loaded', function () {
+        document.addEventListener('DOMContentLoaded', function () {
             // Function to get URL parameters
             function getQueryVariable(variable) {
                 var query = window.location.search.substring(1);
@@ -58,7 +57,7 @@
             if (locationEntity && latitude && longitude) {
                 console.log('Setting location', latitude, longitude);
 
-                locationEntity.setAttribute('gps-new-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
+                locationEntity.setAttribute("gps-new-entity-place", "latitude: 6.449384854478521; longitude: 3.524928322070629");
 
                 console.log('Location set');
             }
