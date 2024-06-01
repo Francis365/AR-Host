@@ -3,13 +3,15 @@
 <head>
     <title>AR.js A-Frame Location-based</title>
 
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-
     <!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
-    <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script> -->
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
+
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script type='text/javascript'
+        src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
+    <script type='text/javascript'
+        src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
 </head>
 
 <body>
@@ -18,25 +20,45 @@
         <!-- <a-text value="This content will always face you." look-at="[gps-camera]" scale="120 120 120"
             rotation="90 90 0"></a-text> -->
 
-        <a-entity gltf-model="./assets/direction_arrow/scene.gltf" animation-mixer scale="2 2 2"
-            position="25 0 0"></a-entity>
+        <!-- <a-entity gltf-model="./assets/direction_arrow/scene.gltf" animation-mixer scale="2 2 2"
+            position="25 0 0"></a-entity> -->
 
         <a-camera gps-camera='gpsMinDistance: 5'></a-camera>
 
-        <a-entity gltf-model="./assets/magnemite/scene.gltf" animation-mixer
-            gps-entity-place="latitude: 6.449384854478521; longitude: 3.524928322070629" scale="10 10 10"></a-entity>
+        <!-- <a-entity gltf-model="./assets/magnemite/scene.gltf" animation-mixer
+            gps-entity-place="latitude: 6.449384854478521; longitude: 3.524928322070629" scale="10 10 10"></a-entity> -->
 
-        <!-- <a-entity material='color: red' geometry='primitive: box'
-            gps-new-entity-place="latitude: 6.449384854478521; longitude: 3.524928322070629"
-            scale="10 10 10"></a-entity> -->
-
-        <!-- <a-marker preset='hiro'>
-            
-        </a-marker> -->
-
-        <!-- <a-entity gltf-model="./assets/direction_arrow/scene.gltf" animation-mixer look-at="[camera]"
-            position="0 0 -5"></a> -->
+        <a-entity id="target-entity" material='color: red' geometry='primitive: box' scale="10 10 10"></a-entity>
     </a-scene>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Function to get URL parameters
+            function getQueryVariable(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split('&');
+                for (var i = 0; i < vars.length; i++) {
+                    var pair = vars[i].split('=');
+                    if (decodeURIComponent(pair[0]) == variable) {
+                        console.log('Query variable found', variable);
+
+                        return decodeURIComponent(pair[1]);
+                    }
+                }
+                console.log('Query variable %s not found', variable);
+            }
+
+            // Get latitude and longitude from URL
+            var latitude = getQueryVariable('latitude');
+            var longitude = getQueryVariable('longitude');
+
+            // Set these values to the A-Frame entity
+            var locationEntity = document.querySelector('#target-entity');
+            if (locationEntity && latitude && longitude) {
+                locationEntity.setAttribute('gps-new-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
+            }
+        });
+    </script>
 </body>
 
 </html>
