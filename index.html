@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AR.js Location-based AR</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/3.0.0/aframe/build/aframe-ar.js"></script>
+    <style>
+      body { margin: 0; overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+      <a-camera gps-camera rotation-reader></a-camera>
+
+      <a-entity 
+        gps-entity-place="latitude: 37.7749; longitude: -122.4194;"
+        gltf-model="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF/Box.gltf"
+        scale="5 5 5">
+      </a-entity>
+    </a-scene>
+
+    <script>
+      // Optionally, you can dynamically update the entity's position
+      // using JavaScript if needed.
+    </script>
+  </body>
+</html>
