@@ -16,10 +16,10 @@
     <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: true'
         renderer='antialias: true; alpha: true'>
         <a-text value="This content will always face you." look-at="[gps-camera]" scale="120 120 120"
-            rotation="0 180 0"></a-text>
+            rotation="90 90 0"></a-text>
 
         <a-entity gltf-model="./assets/direction_arrow/scene.gltf" animation-mixer scale="2 2 2"
-            position="5 0 0"></a-entity>
+            position="15 0 0"></a-entity>
 
         <a-camera gps-camera='gpsMinDistance: 5'></a-camera>
         <!-- <a-entity id="red-box" material='color: red' geometry='primitive: box'
