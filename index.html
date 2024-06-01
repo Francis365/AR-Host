@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 <head>
 <title>AR.js A-Frame Location-based</title>
 <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
@@ -10,5 +10,36 @@
     <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
     <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: 6.449384854478521; longitude: 3.524928322070629" scale="10 10 10"></a-entity>
 </a-scene>
+</body>
+</html>
+ -->
+
+ <html>
+<head>
+  <title>AR.js A-Frame Location-based with Mapbox</title>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js'></script>
+  <script type='text/javascript' src='https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+<body>
+  <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false' renderer='antialias: true; alpha: true'>
+    <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
+    <a-entity material='color: red' geometry='primitive: box' gps-new-entity-place="latitude: 6.449384854478521; longitude: 3.524928322070629" scale="10 10 10"></a-entity>
+    <!-- Add a Mapbox map -->
+    <a-entity mapbox-map='accessToken: pk.eyJ1IjoiZnJhbmNpcy1hbnllamkiLCJhIjoiY2trYTY0YWl1MDFyZTJ3cGlqa2JzOXB0OSJ9.JzARv0nV3B5ReGw0dBppZQ; style: mapbox://styles/mapbox/streets-v11;'>
+      <!-- Draw a line to the destination location -->
+      <a-entity mapbox-line='coordinates: [
+        [3.524928322070629, 6.449384854478521], // starting point (current location)
+        [3.525, 6.45] // destination location (adjust to your desired coordinates)
+      ]; color: #FF0000; width: 5'></a-entity>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    // Initialize Mapbox
+    mapboxgl.accessToken = "pk.eyJ1IjoiZnJhbmNpcy1hbnllamkiLCJhIjoiY2trYTY0YWl1MDFyZTJ3cGlqa2JzOXB0OSJ9.JzARv0nV3B5ReGw0dBppZQ";
+  </script>
 </body>
 </html>
