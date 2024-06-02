@@ -28,8 +28,7 @@
         <!-- <a-entity gltf-model="./assets/magnemite/scene.gltf" animation-mixer
             gps-entity-place="latitude: 6.449384854478521; longitude: 3.524928322070629" scale="10 10 10"></a-entity> -->
 
-        <a-entity id="target-entity" material='color: red' geometry='primitive: box'
-            gps-new-entity-place="latitude: 0; longitude: 0" scale="10 10 10"></a-entity>
+        <a-entity id="target-entity" material='color: red' geometry='primitive: box' scale="10 10 10"></a-entity>
     </a-scene>
 
     <script>
@@ -56,9 +55,11 @@
             // Set these values to the A-Frame entity
             var locationEntity = document.querySelector('#target-entity');
             if (locationEntity && latitude && longitude) {
+                var location = `latitude: ${latitude}; longitude: ${longitude}`;
+
                 console.log('Setting location', latitude, longitude);
 
-                locationEntity.setAttribute('gps-new-entity-place', `latitude: ${latitude}; longitude: ${longitude}`);
+                locationEntity.setAttribute('gps-new-entity-place', location);
 
                 console.log('Location set');
             }
